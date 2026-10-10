@@ -1,0 +1,357 @@
+
+
+:host { 
+  display: block; 
+} 
+
+/* ======================================== Navbar ======================================== */ 
+.navbar { 
+  position: sticky; 
+  top: 0; 
+  z-index: 1000; 
+  min-height: 82px; 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  padding: 16px 6%; 
+  background: var(--navbar-background); 
+  border-bottom: 1px solid var(--border-color); 
+  backdrop-filter: blur(18px); 
+  -webkit-backdrop-filter: blur(18px); 
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.07); 
+  transition: background-color 0.35s ease, border-color 0.35s ease; 
+} 
+
+.logo-section { 
+  display: flex; 
+  align-items: center; 
+  gap: 14px; 
+} 
+
+.logo { 
+  width: 54px; 
+  height: 54px; 
+  display: grid; 
+  place-items: center; 
+  border-radius: 15px; 
+  color: white; 
+  font-size: 1.5rem; 
+  font-weight: 800; 
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-light)); 
+  box-shadow: 0 12px 30px rgba(255, 107, 0, 0.28); 
+} 
+
+.brand h2 { 
+  margin: 0; 
+  color: var(--text-primary); 
+  font-size: 1.25rem; 
+  transition: color 0.35s ease; 
+} 
+
+.brand span { 
+  color: var(--text-secondary); 
+  font-size: 0.78rem; 
+  letter-spacing: 0.1em; 
+  text-transform: uppercase; 
+} 
+
+nav { 
+  display: flex; 
+  align-items: center; 
+  gap: 32px; 
+} 
+
+nav a { 
+  position: relative; 
+  padding: 10px 0; 
+  color: var(--text-secondary); 
+  font-size: 0.95rem; 
+  font-weight: 600; 
+  transition: color 0.3s ease, transform 0.3s ease; 
+} 
+
+nav a::after { 
+  content: ""; 
+  position: absolute; 
+  right: 100%; 
+  bottom: 2px; 
+  left: 0; 
+  height: 2px; 
+  background: var(--primary-color); 
+  transition: right 0.3s ease; 
+} 
+
+nav a:hover, 
+nav a.active-link { 
+  color: var(--primary-color); 
+} 
+
+nav a:hover::after, 
+nav a.active-link::after { 
+  right: 0; 
+} 
+
+.theme-btn { 
+  width: 44px; 
+  height: 44px; 
+  display: grid; 
+  place-items: center; 
+  padding: 0; 
+  border: 1px solid var(--border-color); 
+  border-radius: 50%; 
+  color: var(--text-primary); 
+  background: var(--soft-background); 
+  font-size: 1.1rem; 
+  transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease; 
+} 
+
+.theme-btn:hover { 
+  transform: translateY(-3px) rotate(12deg); 
+  box-shadow: 0 10px 25px rgba(255, 107, 0, 0.2); 
+} 
+
+/* ======================================= Footer ====================================== */ 
+/* =======================================
+   Footer
+======================================= */
+
+.footer {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 50px;
+
+  padding: 70px 6%;
+
+  color: #ffffff;
+
+  background: linear-gradient(
+    135deg,
+#111111,
+#282828,
+#383838
+  );
+
+  border-top: 4px solid var(--primary-color);
+
+  box-shadow:
+    0 -10px 30px rgba(0, 0, 0, 0.15);
+
+  transition: all 0.4s ease;
+}
+
+.footer h2,
+.footer h3 {
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.footer h2 {
+  color: var(--primary-color);
+  font-size: 1.8rem;
+}
+
+.footer h3 {
+  color: #ffffff;
+  font-size: 1.2rem;
+}
+
+.footer p,
+.footer li {
+  color: #d1d5db;
+  line-height: 1.9;
+}
+
+.footer ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.footer li {
+  margin-bottom: 12px;
+
+  transition: all 0.3s ease;
+}
+
+.footer li:hover {
+  color: var(--primary-color);
+  transform: translateX(5px);
+}
+
+/* =======================================
+   Dark Theme Footer
+======================================= */
+
+body.dark-theme .footer {
+  background: linear-gradient(
+    135deg,
+    #0f172a,
+    #1e293b,
+    #334155
+  );
+
+  border-top: 4px solid #ff8c42;
+}
+
+body.dark-theme .footer p,
+body.dark-theme .footer li {
+  color: #cbd5e1;
+}
+
+/* =======================================
+   Responsive
+======================================= */
+
+@media (max-width: 850px) {
+  .footer {
+    grid-template-columns: 1fr;
+    gap: 35px;
+    padding: 50px 5%;
+  }
+}
+
+/* ================================== Responsive Navbar ================================== */ 
+@media (max-width: 850px) { 
+  .navbar { 
+    flex-direction: column; 
+    gap: 16px; 
+    padding: 16px 20px; 
+  }
+  
+  nav { 
+    flex-wrap: wrap; 
+    justify-content: center; 
+    gap: 18px; 
+  } 
+  
+  .footer { 
+    grid-template-columns: 1fr; 
+  } 
+}
+/* ========================================= Login/Register Button ========================================= */
+/* =========================================
+   Auth Actions
+========================================= */
+
+.auth-actions{
+  display:flex;
+  align-items:center;
+}
+
+/* =========================================
+   Login / Register Button
+========================================= */
+
+.login-btn{
+  position:relative;
+
+  display:flex;
+  align-items:center;
+  gap:10px;
+
+  padding:12px 24px;
+
+  border-radius:50px;
+
+  text-decoration:none;
+
+  color:white !important;
+
+  font-weight:600;
+  font-size:.95rem;
+
+  background:
+  linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--primary-light)
+  );
+
+  overflow:hidden;
+
+  transition:.35s;
+
+  box-shadow:
+  0 10px 25px rgba(255,91,0,.25);
+}
+
+.login-btn:hover{
+
+  transform:
+  translateY(-3px);
+
+  box-shadow:
+  0 15px 35px rgba(255,91,0,.35);
+}
+
+/* Glow Effect */
+
+.login-btn::before{
+
+  content:"";
+
+  position:absolute;
+
+  inset:0;
+
+  background:
+  linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,.2),
+    transparent
+  );
+
+  transform:
+  translateX(-120%);
+
+  transition:.6s;
+}
+
+.login-btn:hover::before{
+
+  transform:
+  translateX(120%);
+}
+
+.login-btn::after{
+  display:none;
+}
+
+/* =========================================
+   Icon
+========================================= */
+
+.login-icon{
+
+  width:32px;
+  height:32px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:50%;
+
+  background:
+  rgba(255,255,255,.18);
+
+  backdrop-filter:
+  blur(10px);
+
+  font-size:.95rem;
+}
+
+/* =========================================
+   Dark Theme
+========================================= */
+
+body.dark-theme .login-btn{
+
+  background:
+  linear-gradient(
+    135deg,
+    #ff6b00,
+    #ff8c42
+  );
+}

@@ -1,0 +1,241 @@
+
+.footer {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 50px;
+
+  padding: 70px 6%;
+
+  color: #ffffff;
+
+  background: linear-gradient(
+    135deg,
+#111111,
+#282828,
+#383838
+  );
+
+  border-top: 4px solid var(--primary-color);
+
+  box-shadow:
+    0 -10px 30px rgba(0, 0, 0, 0.15);
+
+  transition: all 0.4s ease;
+}
+
+.footer h2,
+.footer h3 {
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.footer h2 {
+  color: var(--primary-color);
+  font-size: 1.8rem;
+}
+
+.footer h3 {
+  color: #ffffff;
+  font-size: 1.2rem;
+}
+
+.footer p,
+.footer li {
+  color: #d1d5db;
+  line-height: 1.9;
+}
+
+.footer ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.footer li {
+  margin-bottom: 12px;
+
+  transition: all 0.3s ease;
+}
+
+.footer li:hover {
+  color: var(--primary-color);
+  transform: translateX(5px);
+}
+
+/* =======================================
+   Dark Theme Footer
+======================================= */
+
+body.dark-theme .footer {
+  background: linear-gradient(
+    135deg,
+    #0f172a,
+    #1e293b,
+    #334155
+  );
+
+  border-top: 4px solid #ff8c42;
+}
+
+body.dark-theme .footer p,
+body.dark-theme .footer li {
+  color: #cbd5e1;
+}
+
+/* =======================================
+   Responsive
+======================================= */
+
+@media (max-width: 850px) {
+  .footer {
+    grid-template-columns: 1fr;
+    gap: 35px;
+    padding: 50px 5%;
+  }
+}
+
+/* ================================== Responsive Navbar ================================== */ 
+@media (max-width: 850px) { 
+  .navbar { 
+    flex-direction: column; 
+    gap: 16px; 
+    padding: 16px 20px; 
+  }
+  
+  nav { 
+    flex-wrap: wrap; 
+    justify-content: center; 
+    gap: 18px; 
+  } 
+  
+  .footer { 
+    grid-template-columns: 1fr; 
+  } 
+}
+/* ========================================= Login/Register Button ========================================= */
+/* =========================================
+   Auth Actions
+========================================= */
+
+.auth-actions{
+  display:flex;
+  align-items:center;
+}
+
+/* =========================================
+   Login / Register Button
+========================================= */
+
+.login-btn{
+  position:relative;
+
+  display:flex;
+  align-items:center;
+  gap:10px;
+
+  padding:12px 24px;
+
+  border-radius:50px;
+
+  text-decoration:none;
+
+  color:white !important;
+
+  font-weight:600;
+  font-size:.95rem;
+
+  background:
+  linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--primary-light)
+  );
+
+  overflow:hidden;
+
+  transition:.35s;
+
+  box-shadow:
+  0 10px 25px rgba(255,91,0,.25);
+}
+
+.login-btn:hover{
+
+  transform:
+  translateY(-3px);
+
+  box-shadow:
+  0 15px 35px rgba(255,91,0,.35);
+}
+
+/* Glow Effect */
+
+.login-btn::before{
+
+  content:"";
+
+  position:absolute;
+
+  inset:0;
+
+  background:
+  linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,.2),
+    transparent
+  );
+
+  transform:
+  translateX(-120%);
+
+  transition:.6s;
+}
+
+.login-btn:hover::before{
+
+  transform:
+  translateX(120%);
+}
+
+.login-btn::after{
+  display:none;
+}
+
+/* =========================================
+   Icon
+========================================= */
+
+.login-icon{
+
+  width:32px;
+  height:32px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:50%;
+
+  background:
+  rgba(255,255,255,.18);
+
+  backdrop-filter:
+  blur(10px);
+
+  font-size:.95rem;
+}
+
+/* =========================================
+   Dark Theme
+========================================= */
+
+body.dark-theme .login-btn{
+
+  background:
+  linear-gradient(
+    135deg,
+    #ff6b00,
+    #ff8c42
+  );
+}

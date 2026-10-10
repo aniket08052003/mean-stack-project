@@ -1,0 +1,313 @@
+<app-navbar></app-navbar>
+
+<section class="products-hero">
+
+  <div class="hero-pattern"></div>
+
+  <div class="hero-content">
+
+    <span class="section-label">
+      KHETAL PRODUCT CATALOGUE
+    </span>
+
+    <h1>
+      Strength for every
+      <span>structure.</span>
+    </h1>
+
+    <p>
+      Explore our range of pipes, structural steel,
+      plates, roofing materials and related products.
+    </p>
+
+    <div class="hero-statistics">
+
+      <div>
+        <strong>
+          {{ productService.products().length }}
+        </strong>
+
+        <span>Products</span>
+      </div>
+
+      <div>
+        <strong>
+          {{ categories().length - 1 }}
+        </strong>
+
+        <span>Categories</span>
+      </div>
+
+      <div>
+        <strong>25+</strong>
+        <span>Years of experience</span>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- Search and Filters -->
+
+<section class="catalogue-section">
+
+  <div class="catalogue-heading">
+
+    <div>
+
+      <span class="section-label">
+        OUR RANGE
+      </span>
+
+      <h2>
+        Find the right steel product.
+      </h2>
+
+    </div>
+
+    <div class="search-container">
+
+      <span class="search-icon">⌕</span>
+
+      <input
+        #searchInput
+        type="search"
+        placeholder="Search products or categories"
+        (input)="updateSearch(searchInput.value)"
+      >
+
+    </div>
+    
+
+  </div>
+
+  <div class="category-filters">
+
+    @for (
+      category of categories();
+      track category
+    ) {
+
+      <button
+        type="button"
+        [class.active]="
+          selectedCategory() === category
+        "
+        (click)="selectCategory(category)"
+      >
+        {{ category }}
+      </button>
+
+    }
+
+  </div>
+
+  <!-- Product Cards -->
+
+  <div class="product-grid">
+
+    @for (
+      product of filteredProducts();
+      track product.id;
+      let index = $index
+    ) {
+
+      <article
+        class="product-card"
+        [style.--animation-index]="index"
+      >
+
+        <div class="product-image">
+
+          <img
+            [src]="product.image"
+            [alt]="product.name"
+          >
+
+          <div class="image-overlay"></div>
+
+          <span class="category-badge">
+            {{ product.category }}
+          </span>
+
+          @if (product.featured) {
+
+            <span class="featured-badge">
+              Featured
+            </span>
+
+          }
+
+          <span
+            class="availability"
+            [class.unavailable]="!product.available"
+          >
+            <i></i>
+
+            {{
+              product.available
+                ? 'Available'
+                : 'Unavailable'
+            }}
+          </span>
+
+        </div>
+
+        <div class="product-information">
+
+          <div class="product-number">
+            PRODUCT
+            {{
+              (index + 1)
+                .toString()
+                .padStart(2, '0')
+            }}
+          </div>
+
+          <h3>
+            {{ product.name }}
+          </h3>
+
+          <p>
+            {{ product.shortDescription }}
+          </p>
+
+          <button
+            type="button"
+            class="view-button"
+            (click)="openProduct(product)"
+          >
+            View details
+            <span>↗</span>
+          </button>
+
+        </div>
+
+      </article>
+
+    } @empty {
+
+      <div class="empty-state">
+
+        <div>⌕</div>
+
+        <h3>No products found</h3>
+
+        <p>
+          Try another product name or category.
+        </p>
+
+        <button
+          type="button"
+          (click)="
+            updateSearch('');
+            selectCategory('All')
+          "
+        >
+          Show all products
+        </button>
+
+      </div>
+
+    }
+
+  </div>
+
+</section>
+
+<!-- Quality Section -->
+
+<section class="quality-section">
+
+  <div class="quality-heading">
+
+    <span class="section-label">
+      KHETAL ADVANTAGE
+    </span>
+
+    <h2>
+      More than products.
+      <span>A dependable supply partner.</span>
+    </h2>
+
+  </div>
+
+  <div class="quality-grid">
+
+    <article>
+      <span>01</span>
+      <h3>Quality-focused stock</h3>
+      <p>
+        Products selected for dependable use across
+        construction and industrial requirements.
+      </p>
+    </article>
+
+    <article>
+      <span>02</span>
+      <h3>Competitive pricing</h3>
+      <p>
+        Material options provided with a focus on
+        competitive and transparent commercial value.
+      </p>
+    </article>
+
+    <article>
+      <span>03</span>
+      <h3>Timely service</h3>
+      <p>
+        Efficient customer support and order
+        coordination for smoother fulfilment.
+      </p>
+    </article>
+
+    <article>
+      <span>04</span>
+      <h3>Odd-size availability</h3>
+      <p>
+        Support for specifications that may not be
+        readily available elsewhere.
+      </p>
+    </article>
+
+  </div>
+
+</section>
+
+<!-- Product Details Modal -->
+@if (selectedProduct(); as product) {
+  <div class="product-modal-backdrop" (click)="closeProduct()">
+    <article class="product-modal" (click)="$event.stopPropagation()">
+      <button type="button" class="modal-close" (click)="closeProduct()" aria-label="Close product details">
+        &times;
+      </button>
+
+      <div class="modal-image">
+        <img [src]="product.image" [alt]="product.name">
+      </div>
+
+      <div class="modal-content">
+        <span class="section-label">{{ product.category }}</span>
+        <h2>{{ product.name }}</h2>
+        <p>{{ product.description }}</p>
+
+        <div class="modal-status">
+          <span [class.unavailable-text]="!product.available">
+            {{ product.available ? 'Currently available' : 'Currently unavailable' }}
+          </span>
+          @if (product.featured) {
+            <span>Featured product</span>
+          }
+        </div>
+
+        <a href="#contact">
+          Send enquiry <span>&rarr;</span>
+        </a>
+      </div>
+    </article>
+  </div>
+}
+
+<app-footer></app-footer>

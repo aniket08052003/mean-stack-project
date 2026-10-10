@@ -1,0 +1,1349 @@
+<div
+  class="admin-layout"
+  [class.sidebar-collapsed]="!sidebarOpen()"
+>
+
+
+  <!-- ==========================================
+       SIDEBAR
+  ========================================== -->
+
+  <aside class="sidebar">
+
+    <div class="sidebar-brand">
+
+      <div class="brand-logo">
+        K
+      </div>
+
+      <div class="brand-text">
+
+        <h2>
+          Khetal
+        </h2>
+
+        <span>
+          Admin Panel
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <div class="admin-profile">
+
+      <div class="profile-avatar">
+        A
+      </div>
+
+      <div>
+
+        <strong>
+          Administrator
+        </strong>
+
+        <span>
+          Super Admin
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <!-- Navigation -->
+
+    <nav class="sidebar-nav">
+
+      <button
+        type="button"
+        [class.active]="activeSection() === 'dashboard'"
+        (click)="changeSection('dashboard')">
+
+        <span class="nav-icon">
+          ⌂
+        </span>
+
+        <span>
+          Dashboard
+        </span>
+
+      </button>
+
+
+      <button
+        type="button"
+        [class.active]="activeSection() === 'users'"
+        (click)="changeSection('users')">
+
+        <span class="nav-icon">
+          👥
+        </span>
+
+        <span>
+          Users
+        </span>
+
+      </button>
+
+
+      <button
+        type="button"
+        [class.active]="activeSection() === 'products'"
+        (click)="changeSection('products')">
+
+        <span class="nav-icon">
+          📦
+        </span>
+
+        <span>
+          Products
+        </span>
+
+      </button>
+
+
+      <button
+        type="button"
+        [class.active]="activeSection() === 'admins'"
+        (click)="changeSection('admins')">
+
+        <span class="nav-icon">
+          🛡️
+        </span>
+
+        <span>
+          Admins
+        </span>
+
+      </button>
+
+
+      <button
+        type="button"
+        [class.active]="activeSection() === 'wallpaper'"
+        (click)="changeSection('wallpaper')">
+
+        <span class="nav-icon">
+          🖼️
+        </span>
+
+        <span>
+          Home Wallpaper
+        </span>
+
+      </button>
+
+    </nav>
+
+
+    <button
+      type="button"
+      class="logout-btn"
+      (click)="logout()">
+
+      <span>
+        ↪
+      </span>
+
+      Logout
+
+    </button>
+
+  </aside>
+
+
+  <!-- ==========================================
+       MAIN CONTENT
+  ========================================== -->
+
+  <main class="main-content">
+
+
+    <!-- TOP BAR -->
+
+    <header class="topbar">
+
+      <button
+        type="button"
+        class="menu-btn"
+        (click)="toggleSidebar()">
+
+        ☰
+
+      </button>
+
+
+      <div class="topbar-title">
+
+        <span>
+          ADMIN CONTROL CENTER
+        </span>
+
+        <h1>
+
+          @if (activeSection() === 'dashboard') {
+            Dashboard
+          }
+
+          @if (activeSection() === 'users') {
+            Users
+          }
+
+          @if (activeSection() === 'products') {
+            Products
+          }
+
+          @if (activeSection() === 'admins') {
+            Administrators
+          }
+
+          @if (activeSection() === 'wallpaper') {
+            Homepage Wallpaper
+          }
+
+        </h1>
+
+      </div>
+
+
+      <div class="topbar-right">
+
+        <div class="online-status">
+          <span></span>
+          System Online
+        </div>
+
+        <div class="top-avatar">
+          A
+        </div>
+
+      </div>
+
+    </header>
+
+
+    <!-- ==========================================
+         DASHBOARD
+    ========================================== -->
+
+    @if (activeSection() === 'dashboard') {
+
+      <section class="dashboard-section">
+
+
+        <!-- Welcome -->
+
+        <div class="welcome-card">
+
+          <div>
+
+            <span class="welcome-label">
+              WELCOME BACK, ADMIN
+            </span>
+
+            <h2>
+              Manage your business
+              <span>with confidence.</span>
+            </h2>
+
+            <p>
+              Monitor your products, users and
+              website content from one place.
+            </p>
+
+          </div>
+
+          <div class="welcome-icon">
+            ⚡
+          </div>
+
+        </div>
+
+
+        <!-- Statistics -->
+
+        <div class="stats-grid">
+
+
+          <div class="stat-card orange">
+
+            <div class="stat-icon">
+              📦
+            </div>
+
+            <div>
+
+              <span>
+                Total Products
+              </span>
+
+              <strong>
+                {{ totalProducts() }}
+              </strong>
+
+            </div>
+
+            <div class="stat-decoration"></div>
+
+          </div>
+
+
+          <div class="stat-card blue">
+
+            <div class="stat-icon">
+              ✓
+            </div>
+
+            <div>
+
+              <span>
+                Available
+              </span>
+
+              <strong>
+                {{ availableProducts() }}
+              </strong>
+
+            </div>
+
+            <div class="stat-decoration"></div>
+
+          </div>
+
+
+          <div class="stat-card purple">
+
+            <div class="stat-icon">
+              ⭐
+            </div>
+
+            <div>
+
+              <span>
+                Featured
+              </span>
+
+              <strong>
+                {{ featuredProducts() }}
+              </strong>
+
+            </div>
+
+            <div class="stat-decoration"></div>
+
+          </div>
+
+
+          <div class="stat-card green">
+
+            <div class="stat-icon">
+              👥
+            </div>
+
+            <div>
+
+              <span>
+                Users
+              </span>
+
+              <strong>
+                {{ totalUsers() }}
+              </strong>
+
+            </div>
+
+            <div class="stat-decoration"></div>
+
+          </div>
+
+        </div>
+
+
+        <!-- Dashboard Bottom -->
+
+        <div class="dashboard-grid">
+
+
+          <div class="panel">
+
+            <div class="panel-header">
+
+              <div>
+
+                <span>
+                  INVENTORY
+                </span>
+
+                <h3>
+                  Product Overview
+                </h3>
+
+              </div>
+
+              <button
+                type="button"
+                (click)="changeSection('products')">
+
+                Manage Products →
+
+              </button>
+
+            </div>
+
+
+            <div class="inventory-list">
+
+              @for (
+                product of productService.products().slice(0, 5);
+                track product.id
+              ) {
+
+                <div class="inventory-item">
+
+                  <div class="inventory-image">
+
+                    <img
+                      [src]="product.image"
+                      [alt]="product.name"
+                    >
+
+                  </div>
+
+                  <div class="inventory-info">
+
+                    <strong>
+                      {{ product.name }}
+                    </strong>
+
+                    <span>
+                      {{ product.category }}
+                    </span>
+
+                  </div>
+
+                  <span
+                    class="availability"
+                    [class.unavailable]="!product.available">
+
+                    {{
+                      product.available
+                        ? 'Available'
+                        : 'Unavailable'
+                    }}
+
+                  </span>
+
+                </div>
+
+              }
+
+            </div>
+
+          </div>
+
+
+          <div class="panel quick-panel">
+
+            <div class="panel-header">
+
+              <div>
+
+                <span>
+                  QUICK ACTIONS
+                </span>
+
+                <h3>
+                  Shortcuts
+                </h3>
+
+              </div>
+
+            </div>
+
+
+            <button
+              type="button"
+              class="quick-action"
+              (click)="openAddProduct()">
+
+              <span>＋</span>
+
+              <div>
+
+                <strong>
+                  Add Product
+                </strong>
+
+                <small>
+                  Create a new product entry
+                </small>
+
+              </div>
+
+              →
+
+            </button>
+
+
+            <button
+              type="button"
+              class="quick-action"
+              (click)="openAdminModal()">
+
+              <span>🛡️</span>
+
+              <div>
+
+                <strong>
+                  Add Administrator
+                </strong>
+
+                <small>
+                  Create a new admin account
+                </small>
+
+              </div>
+
+              →
+
+            </button>
+
+
+            <button
+              type="button"
+              class="quick-action"
+              (click)="changeSection('wallpaper')">
+
+              <span>🖼️</span>
+
+              <div>
+
+                <strong>
+                  Change Wallpaper
+                </strong>
+
+                <small>
+                  Update homepage appearance
+                </small>
+
+              </div>
+
+              →
+
+            </button>
+
+          </div>
+
+        </div>
+
+      </section>
+
+    }
+
+
+    <!-- ==========================================
+         USERS
+    ========================================== -->
+
+    @if (activeSection() === 'users') {
+
+      <section class="content-section">
+
+        <div class="section-heading">
+
+          <div>
+
+            <span>
+              CUSTOMER MANAGEMENT
+            </span>
+
+            <h2>
+              Registered Users
+            </h2>
+
+          </div>
+
+          <div class="heading-count">
+            {{ totalUsers() }} Users
+          </div>
+
+        </div>
+
+
+        <div class="table-card">
+
+          <div class="table-wrapper">
+
+            <table>
+
+              <thead>
+
+                <tr>
+                  <th>User</th>
+                  <th>Email</th>
+                  <th>Phone</th>
+                  <th>Status</th>
+                  <th>Joined</th>
+                </tr>
+
+              </thead>
+
+              <tbody>
+
+                @for (
+                  user of users();
+                  track user.id
+                ) {
+
+                  <tr>
+
+                    <td>
+
+                      <div class="user-cell">
+
+                        <div class="user-avatar">
+                          {{ user.name.charAt(0) }}
+                        </div>
+
+                        <strong>
+                          {{ user.name }}
+                        </strong>
+
+                      </div>
+
+                    </td>
+
+                    <td>
+                      {{ user.email }}
+                    </td>
+
+                    <td>
+                      {{ user.phone }}
+                    </td>
+
+                    <td>
+
+                      <span
+                        class="status"
+                        [class.inactive]="
+                          user.status === 'Inactive'
+                        ">
+
+                        {{ user.status }}
+
+                      </span>
+
+                    </td>
+
+                    <td>
+                      {{ user.joined }}
+                    </td>
+
+                  </tr>
+
+                }
+
+              </tbody>
+
+            </table>
+
+          </div>
+
+        </div>
+
+      </section>
+
+    }
+
+
+    <!-- ==========================================
+         PRODUCTS
+    ========================================== -->
+
+    @if (activeSection() === 'products') {
+
+      <section class="content-section">
+
+
+        <div class="section-heading">
+
+          <div>
+
+            <span>
+              INVENTORY MANAGEMENT
+            </span>
+
+            <h2>
+              Products
+            </h2>
+
+          </div>
+
+
+          <div class="heading-actions">
+
+            <button
+              type="button"
+              class="secondary-btn"
+              (click)="resetProducts()">
+
+              Reset
+
+            </button>
+
+            <button
+              type="button"
+              class="primary-btn"
+              (click)="openAddProduct()">
+
+              + Add Product
+
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <div class="products-admin-grid">
+
+          @for (
+            product of productService.products();
+            track product.id
+          ) {
+
+            <article class="admin-product-card">
+
+              <div class="product-image">
+
+                <img
+                  [src]="product.image"
+                  [alt]="product.name"
+                >
+
+                @if (product.featured) {
+
+                  <span class="featured-badge">
+                    ★ Featured
+                  </span>
+
+                }
+
+              </div>
+
+
+              <div class="product-card-body">
+
+                <div class="product-category">
+                  {{ product.category }}
+                </div>
+
+                <h3>
+                  {{ product.name }}
+                </h3>
+
+                <p>
+                  {{ product.shortDescription }}
+                </p>
+
+
+                <div class="product-footer">
+
+                  <span
+                    class="status"
+                    [class.inactive]="
+                      !product.available
+                    ">
+
+                    {{
+                      product.available
+                        ? 'Available'
+                        : 'Unavailable'
+                    }}
+
+                  </span>
+
+
+                  <div class="card-actions">
+
+                    <button
+                      type="button"
+                      class="edit-btn"
+                      (click)="openEditProduct(product)">
+
+                      Edit
+
+                    </button>
+
+                    <button
+                      type="button"
+                      class="delete-btn"
+                      (click)="deleteProduct(product)">
+
+                      Delete
+
+                    </button>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </article>
+
+          }
+
+        </div>
+
+      </section>
+
+    }
+
+
+    <!-- ==========================================
+         ADMINS
+    ========================================== -->
+
+    @if (activeSection() === 'admins') {
+
+      <section class="content-section">
+
+        <div class="section-heading">
+
+          <div>
+
+            <span>
+              ACCESS CONTROL
+            </span>
+
+            <h2>
+              Administrators
+            </h2>
+
+          </div>
+
+          <button
+            type="button"
+            class="primary-btn"
+            (click)="openAdminModal()">
+
+            + Add Admin
+
+          </button>
+
+        </div>
+
+
+        <div class="admin-cards">
+
+          @for (
+            admin of admins();
+            track admin.id
+          ) {
+
+            <div class="admin-card">
+
+              <div class="admin-card-avatar">
+                {{ admin.username.charAt(0).toUpperCase() }}
+              </div>
+
+
+              <div class="admin-card-info">
+
+                <h3>
+                  {{ admin.username }}
+                </h3>
+
+                <span>
+                  {{ admin.role }}
+                </span>
+
+              </div>
+
+
+              <div class="admin-security">
+                🔐 Protected
+              </div>
+
+
+              <button
+                type="button"
+                class="delete-btn"
+                (click)="deleteAdmin(admin.id)">
+
+                Remove
+
+              </button>
+
+            </div>
+
+          }
+
+        </div>
+
+      </section>
+
+    }
+
+
+    <!-- ==========================================
+         WALLPAPER
+    ========================================== -->
+
+    @if (activeSection() === 'wallpaper') {
+
+      <section class="content-section">
+
+        <div class="section-heading">
+
+          <div>
+
+            <span>
+              WEBSITE CUSTOMIZATION
+            </span>
+
+            <h2>
+              Homepage Wallpaper
+            </h2>
+
+          </div>
+
+        </div>
+
+
+        <div class="wallpaper-layout">
+
+
+          <div class="wallpaper-preview">
+
+            <div
+              class="preview-image"
+              [style.background-image]="
+                'url(' + wallpaper() + ')'
+              ">
+
+              <div class="preview-overlay">
+
+                <span>
+                  LIVE PREVIEW
+                </span>
+
+                <h2>
+                  Khetal Pipes & Tubes
+                </h2>
+
+                <p>
+                  Trusted Steel & Hardware Partner
+                </p>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="wallpaper-controls">
+
+            <span class="control-label">
+              HOMEPAGE HERO IMAGE
+            </span>
+
+            <h3>
+              Change your wallpaper
+            </h3>
+
+            <p>
+              Enter an image URL to update the
+              homepage hero section.
+            </p>
+
+
+            <label>
+              Image URL
+            </label>
+
+            <input
+              type="url"
+              [(ngModel)]="wallpaperInput"
+              placeholder="https://example.com/image.jpg"
+            >
+
+
+            <button
+              type="button"
+              class="primary-btn full"
+              (click)="updateWallpaper()">
+
+              Update Wallpaper
+
+            </button>
+
+
+            <button
+              type="button"
+              class="secondary-btn full"
+              (click)="resetWallpaper()">
+
+              Restore Default
+
+            </button>
+
+
+            <div class="wallpaper-tip">
+
+              💡
+              <span>
+                Use a high-resolution landscape
+                image for the best result.
+              </span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+    }
+
+  </main>
+
+</div>
+
+
+<!-- ==========================================
+     PRODUCT MODAL
+========================================== -->
+
+@if (showProductModal()) {
+
+  <div
+    class="modal-backdrop"
+    (click)="closeProductModal()">
+
+    <div
+      class="modal"
+      (click)="$event.stopPropagation()">
+
+
+      <div class="modal-header">
+
+        <div>
+
+          <span>
+            PRODUCT MANAGEMENT
+          </span>
+
+          <h2>
+
+            @if (productMode() === 'add') {
+              Add Product
+            } @else {
+              Edit Product
+            }
+
+          </h2>
+
+        </div>
+
+        <button
+          type="button"
+          class="close-btn"
+          (click)="closeProductModal()">
+
+          ×
+
+        </button>
+
+      </div>
+
+
+      <div class="modal-body">
+
+        <div class="form-grid">
+
+
+          <div class="form-field">
+
+            <label>
+              Product Name *
+            </label>
+
+            <input
+              type="text"
+              [ngModel]="productForm().name"
+              (ngModelChange)="updateProductField('name', $event)"
+              placeholder="MS Pipes"
+            >
+
+          </div>
+
+
+          <div class="form-field">
+
+            <label>
+              Category *
+            </label>
+
+            <input
+              type="text"
+              [ngModel]="productForm().category"
+              (ngModelChange)="updateProductField('category', $event)"
+              placeholder="Pipes"
+            >
+
+          </div>
+
+
+          <div class="form-field full-width">
+
+            <label>
+              Short Description *
+            </label>
+
+            <input
+              type="text"
+              [ngModel]="productForm().shortDescription"
+              (ngModelChange)="updateProductField('shortDescription', $event)"
+              placeholder="Short product description"
+            >
+
+          </div>
+
+
+          <div class="form-field full-width">
+
+            <label>
+              Description *
+            </label>
+
+            <textarea
+              rows="4"
+              [ngModel]="productForm().description"
+              (ngModelChange)="updateProductField('description', $event)"
+              placeholder="Detailed product description">
+            </textarea>
+
+          </div>
+
+
+          <div class="form-field full-width">
+
+            <label>
+              Image URL
+            </label>
+
+            <input
+              type="url"
+              [ngModel]="productForm().image"
+              (ngModelChange)="updateProductField('image', $event)"
+              placeholder="https://example.com/product.jpg"
+            >
+
+          </div>
+
+
+          <label class="checkbox-field">
+
+            <input
+              type="checkbox"
+              [ngModel]="productForm().featured"
+              (ngModelChange)="updateProductField('featured', $event)"
+            >
+
+            <span>
+              Featured Product
+            </span>
+
+          </label>
+
+
+          <label class="checkbox-field">
+
+            <input
+              type="checkbox"
+              [ngModel]="productForm().available"
+              (ngModelChange)="updateProductField('available', $event)"
+            >
+
+            <span>
+              Product Available
+            </span>
+
+          </label>
+
+        </div>
+
+      </div>
+
+
+      <div class="modal-footer">
+
+        <button
+          type="button"
+          class="secondary-btn"
+          (click)="closeProductModal()">
+
+          Cancel
+
+        </button>
+
+        <button
+          type="button"
+          class="primary-btn"
+          (click)="saveProduct()">
+
+          @if (productMode() === 'add') {
+            Create Product
+          } @else {
+            Save Changes
+          }
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+}
+
+
+<!-- ==========================================
+     ADMIN MODAL
+========================================== -->
+
+@if (showAdminModal()) {
+
+  <div
+    class="modal-backdrop"
+    (click)="closeAdminModal()">
+
+    <div
+      class="modal small-modal"
+      (click)="$event.stopPropagation()">
+
+
+      <div class="modal-header">
+
+        <div>
+
+          <span>
+            ACCESS CONTROL
+          </span>
+
+          <h2>
+            Add Administrator
+          </h2>
+
+        </div>
+
+        <button
+          type="button"
+          class="close-btn"
+          (click)="closeAdminModal()">
+
+          ×
+
+        </button>
+
+      </div>
+
+
+      <div class="modal-body">
+
+
+        <div class="form-field">
+
+          <label>
+            Username
+          </label>
+
+          <input
+            type="text"
+            [ngModel]="adminForm().username"
+            (ngModelChange)="updateAdminField('username', $event)"
+            placeholder="Enter username"
+          >
+
+        </div>
+
+
+        <div class="form-field">
+
+          <label>
+            Password
+          </label>
+
+          <input
+            type="password"
+            [ngModel]="adminForm().password"
+            (ngModelChange)="updateAdminField('password', $event)"
+            placeholder="Enter password"
+          >
+
+        </div>
+
+
+        <div class="form-field">
+
+          <label>
+            Role
+          </label>
+
+          <select
+            [ngModel]="adminForm().role"
+            (ngModelChange)="updateAdminField('role', $event)">
+
+            <option value="Admin">
+              Admin
+            </option>
+
+            <option value="Manager">
+              Manager
+            </option>
+
+            <option value="Super Admin">
+              Super Admin
+            </option>
+
+          </select>
+
+        </div>
+
+      </div>
+
+
+      <div class="modal-footer">
+
+        <button
+          type="button"
+          class="secondary-btn"
+          (click)="closeAdminModal()">
+
+          Cancel
+
+        </button>
+
+        <button
+          type="button"
+          class="primary-btn"
+          (click)="addAdmin()">
+
+          Create Admin
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+}

@@ -1,0 +1,475 @@
+:host {
+  display: block;
+}
+
+
+/* ===================================
+   REGISTER PAGE
+=================================== */
+
+.register-page {
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 40px;
+
+  background: var(--page-background);
+}
+
+
+/* ===================================
+   MAIN CONTAINER
+=================================== */
+
+.register-container {
+  width: 1300px;
+  max-width: 100%;
+
+  display: grid;
+
+  grid-template-columns:
+    1.1fr 0.9fr;
+
+  overflow: hidden;
+
+  border-radius: 35px;
+
+  background: var(--card-background);
+
+  box-shadow:
+    0 25px 80px rgba(0, 0, 0, 0.15);
+
+  border:
+    1px solid var(--border-color);
+}
+
+
+/* ===================================
+   LEFT IMAGE
+=================================== */
+
+.image-section {
+  position: relative;
+
+  min-height: 750px;
+
+  background:
+    url('https://images.unsplash.com/photo-1565793298595-6a879b1d9492?auto=format&fit=crop&w=1800&q=90');
+
+  background-size: cover;
+
+  background-position: center;
+}
+
+
+/* ===================================
+   IMAGE OVERLAY
+=================================== */
+
+.image-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  display: flex;
+
+  align-items: flex-end;
+
+  padding: 50px;
+
+  background:
+    linear-gradient(
+      transparent,
+      rgba(0, 0, 0, 0.75)
+    );
+}
+
+
+/* ===================================
+   BRAND
+=================================== */
+
+.brand-box {
+  color: white;
+}
+
+
+.brand-logo {
+  width: 80px;
+  height: 80px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 20px;
+
+  font-size: 36px;
+
+  font-weight: 900;
+
+  background: white;
+
+  color: #ff6b00;
+
+  margin-bottom: 20px;
+}
+
+
+.brand-box h1 {
+  margin: 0;
+
+  font-size: 48px;
+
+  line-height: 1.1;
+}
+
+
+.brand-box p {
+  font-size: 18px;
+
+  opacity: 0.9;
+
+  line-height: 1.6;
+
+  max-width: 500px;
+}
+
+
+/* ===================================
+   FORM SECTION
+=================================== */
+
+.form-section {
+  padding: 65px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+}
+
+
+/* ===================================
+   FORM TAG
+=================================== */
+
+.form-tag {
+  width: max-content;
+
+  background: #ffe7d2;
+
+  color: #ff6b00;
+
+  padding: 8px 16px;
+
+  border-radius: 30px;
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  letter-spacing: 2px;
+}
+
+
+/* ===================================
+   HEADING
+=================================== */
+
+.form-section h2 {
+  margin: 20px 0 10px;
+
+  font-size: 48px;
+
+  line-height: 1.1;
+
+  color: var(--text-primary);
+}
+
+
+.subtitle {
+  color: var(--text-secondary);
+
+  margin-bottom: 30px;
+
+  line-height: 1.5;
+}
+
+
+/* ===================================
+   INPUT GROUP
+=================================== */
+
+.input-group {
+  margin-bottom: 18px;
+}
+
+
+.input-group label {
+  display: block;
+
+  margin-bottom: 8px;
+
+  font-weight: 600;
+
+  color: var(--text-secondary);
+}
+
+
+.input-group input {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  padding: 16px;
+
+  border-radius: 14px;
+
+  border:
+    1px solid var(--border-color);
+
+  background:
+    var(--soft-background);
+
+  color:
+    var(--text-primary);
+
+  font-size: 15px;
+
+  outline: none;
+
+  transition:
+    border-color 0.3s,
+    box-shadow 0.3s;
+}
+
+
+.input-group input:focus {
+  border-color: #ff6b00;
+
+  box-shadow:
+    0 0 0 3px rgba(255, 107, 0, 0.12);
+}
+
+
+.input-group input::placeholder {
+  color: var(--text-secondary);
+
+  opacity: 0.7;
+}
+
+
+/* ===================================
+   PASSWORD
+=================================== */
+
+.password-box {
+  position: relative;
+}
+
+
+.password-box input {
+  padding-right: 55px;
+}
+
+
+.eye-btn {
+  position: absolute;
+
+  top: 50%;
+
+  right: 15px;
+
+  transform: translateY(-50%);
+
+  border: none;
+
+  background: none;
+
+  cursor: pointer;
+
+  font-size: 18px;
+
+  padding: 5px;
+}
+
+
+/* ===================================
+   REGISTER BUTTON
+=================================== */
+
+.register-btn {
+  width: 100%;
+
+  margin-top: 8px;
+
+  border: none;
+
+  padding: 18px;
+
+  border-radius: 14px;
+
+  color: white;
+
+  font-size: 16px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ff6b00,
+      #ff9447
+    );
+
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s,
+    opacity 0.3s;
+}
+
+
+.register-btn:hover:not(:disabled) {
+  transform: translateY(-4px);
+
+  box-shadow:
+    0 15px 40px
+    rgba(255, 107, 0, 0.35);
+}
+
+
+.register-btn:disabled {
+  cursor: not-allowed;
+
+  opacity: 0.5;
+}
+
+
+/* ===================================
+   LOGIN LINK
+=================================== */
+
+.login-text {
+  margin-top: 22px;
+
+  text-align: center;
+}
+
+
+.login-text span {
+  color: var(--text-secondary);
+}
+
+
+.login-text a {
+  margin-left: 8px;
+
+  color: #ff6b00;
+
+  font-weight: 700;
+
+  text-decoration: none;
+}
+
+
+.login-text a:hover {
+  text-decoration: underline;
+}
+
+
+/* ===================================
+   MOBILE
+=================================== */
+
+@media (max-width: 950px) {
+
+  .register-page {
+    padding: 20px;
+  }
+
+  .register-container {
+    grid-template-columns: 1fr;
+
+    border-radius: 25px;
+  }
+
+  .image-section {
+    min-height: 300px;
+  }
+
+  .image-overlay {
+    padding: 35px;
+  }
+
+  .brand-logo {
+    width: 60px;
+    height: 60px;
+
+    font-size: 28px;
+  }
+
+  .brand-box h1 {
+    font-size: 34px;
+  }
+
+  .brand-box p {
+    font-size: 15px;
+  }
+
+  .form-section {
+    padding: 35px;
+  }
+
+  .form-section h2 {
+    font-size: 38px;
+  }
+}
+
+
+/* ===================================
+   SMALL MOBILE
+=================================== */
+
+@media (max-width: 500px) {
+
+  .register-page {
+    padding: 10px;
+  }
+
+  .register-container {
+    border-radius: 20px;
+  }
+
+  .image-section {
+    min-height: 250px;
+  }
+
+  .image-overlay {
+    padding: 25px;
+  }
+
+  .brand-box h1 {
+    font-size: 28px;
+  }
+
+  .brand-box p {
+    font-size: 14px;
+  }
+
+  .form-section {
+    padding: 25px 20px;
+  }
+
+  .form-section h2 {
+    font-size: 32px;
+  }
+
+}
