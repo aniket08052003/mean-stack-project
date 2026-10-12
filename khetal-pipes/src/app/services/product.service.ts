@@ -59,161 +59,143 @@ export class ProductService {
   ============================================================
   */
 
-  private readonly defaultProducts: Product[] = [
+ /*
+============================================================
+DEFAULT PRODUCTS
+============================================================
+*/
 
-    {
-      id: 1,
-      name: 'MS Pipes',
-      category: 'Pipes',
+private readonly defaultProducts: Product[] = [
+  {
+    id: 1,
+    name: 'MS Pipes',
+    category: 'Pipes',
+    shortDescription:
+      'Reliable mild steel pipes for structural and industrial projects.',
+    description:
+      'Premium mild steel pipes suitable for fabrication, construction, industrial frameworks and general engineering applications.',
+    image: 'assets/images/MS_Pipes.jpeg',
+    featured: true,
+    available: true
+  },
 
-      shortDescription:
-        'Reliable mild steel pipes for structural and industrial projects.',
+  {
+    id: 2,
+    name: 'Galvanised GI Pipes',
+    category: 'Pipes',
+    shortDescription:
+      'Corrosion-resistant pipes for long-lasting performance.',
+    description:
+      'Galvanised iron pipes suited to projects requiring strength, durability and improved resistance against corrosion.',
+    image: 'assets/images/GI_Pipes.jpeg',
+    featured: true,
+    available: true
+  },
 
-      description:
-        'Premium mild steel pipes suitable for fabrication, construction, industrial frameworks and general engineering applications.',
+  {
+    id: 3,
+    name: 'Seamless Pipes',
+    category: 'Pipes',
+    shortDescription:
+      'Seamless piping solutions for demanding applications.',
+    description:
+      'Durable seamless pipes designed for industrial and engineering requirements where dependable material performance is important.',
+    image: 'assets/images/Seamless_Pipes.jpeg',
+    featured: false,
+    available: true
+  },
 
-      image:
-        'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=85',
+  {
+    id: 4,
+    name: 'MS Angles',
+    category: 'Structural Steel',
+    shortDescription:
+      'Steel angles for fabrication and structural frameworks.',
+    description:
+      'Mild steel angles used for framing, supports, fabrication, construction and other structural applications.',
+    image: '/assets/images/Angles.jpeg',
+    featured: true,
+    available: true
+  },
 
-      featured: true,
-      available: true
-    },
+  {
+    id: 5,
+    name: 'MS Bars',
+    category: 'Structural Steel',
+    shortDescription:
+      'Strong steel bars for construction and engineering work.',
+    description:
+      'Mild steel bars available for fabrication, reinforcement, manufacturing and general engineering requirements.',
+    image: 'assets/images/MS_Bars.jpeg',
+    featured: false,
+    available: true
+  },
 
+  {
+    id: 6,
+    name: 'MS Flats',
+    category: 'Structural Steel',
+    shortDescription:
+      'Versatile flat steel products for varied requirements.',
+    description:
+      'Mild steel flats suitable for industrial fabrication, frames, brackets and general construction work.',
+    image: 'assets/images/MS_Flats.jpeg',
+    featured: false,
+    available: true
+  },
 
-    {
-      id: 2,
-      name: 'Galvanised GI Pipes',
-      category: 'Pipes',
+  {
+    id: 7,
+    name: 'MS Plates',
+    category: 'Plates',
+    shortDescription:
+      'Heavy-duty steel plates for fabrication and engineering.',
+    description:
+      'Mild steel plates for construction, manufacturing, machinery, fabrication and industrial applications.',
+    image: '/assets/images/plates.jpeg',
+    featured: true,
+    available: true
+  },
 
-      shortDescription:
-        'Corrosion-resistant pipes for long-lasting performance.',
+  {
+    id: 8,
+    name: 'Roofing Sheets',
+    category: 'Roofing',
+    shortDescription:
+      'Dependable roofing materials for industrial projects.',
+    description:
+      'Roofing sheets suitable for warehouses, industrial structures, commercial buildings and development projects.',
+    image: 'assets/images/Roofing_Sheets.jpeg',
+    featured: true,
+    available: true
+  }
+];
 
-      description:
-        'Galvanised iron pipes suited to projects requiring strength, durability and improved resistance against corrosion.',
+  private normalizeProductImage(product: Product): Product {
+    const productName = product.name
+      .trim()
+      .toLowerCase()
+      .replace(/^ms\s+/, '');
 
-      image:
-        'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=85',
+    const catalogImages: Record<string, string> = {
+      angle: '/assets/images/Angles.jpeg',
+      angles: '/assets/images/Angles.jpeg',
+      beam: '/assets/images/beams.jpeg',
+      beams: '/assets/images/beams.jpeg',
+      channel: '/assets/images/channels.jpeg',
+      channels: '/assets/images/channels.jpeg',
+      plate: '/assets/images/plates.jpeg',
+      plates: '/assets/images/plates.jpeg'
+    };
 
-      featured: true,
-      available: true
-    },
+    const catalogImage = catalogImages[productName];
 
-
-    {
-      id: 3,
-      name: 'Seamless Pipes',
-      category: 'Pipes',
-
-      shortDescription:
-        'Seamless piping solutions for demanding applications.',
-
-      description:
-        'Durable seamless pipes designed for industrial and engineering requirements where dependable material performance is important.',
-
-      image:
-        'https://images.unsplash.com/photo-1530124566582-a618bc2615dc?auto=format&fit=crop&w=1200&q=85',
-
-      featured: false,
-      available: true
-    },
-
-
-    {
-      id: 4,
-      name: 'MS Angles',
-      category: 'Structural Steel',
-
-      shortDescription:
-        'Steel angles for fabrication and structural frameworks.',
-
-      description:
-        'Mild steel angles used for framing, supports, fabrication, construction and other structural applications.',
-
-      image:
-        'https://images.unsplash.com/photo-1518709766631-a6a7f45921c3?auto=format&fit=crop&w=1200&q=85',
-
-      featured: true,
-      available: true
-    },
-
-
-    {
-      id: 5,
-      name: 'MS Bars',
-      category: 'Structural Steel',
-
-      shortDescription:
-        'Strong steel bars for construction and engineering work.',
-
-      description:
-        'Mild steel bars available for fabrication, reinforcement, manufacturing and general engineering requirements.',
-
-      image:
-        'https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=1200&q=85',
-
-      featured: false,
-      available: true
-    },
-
-
-    {
-      id: 6,
-      name: 'MS Flats',
-      category: 'Structural Steel',
-
-      shortDescription:
-        'Versatile flat steel products for varied requirements.',
-
-      description:
-        'Mild steel flats suitable for industrial fabrication, frames, brackets and general construction work.',
-
-      image:
-        'https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=1200&q=85',
-
-      featured: false,
-      available: true
-    },
-
-
-    {
-      id: 7,
-      name: 'MS Plates',
-      category: 'Plates',
-
-      shortDescription:
-        'Heavy-duty steel plates for fabrication and engineering.',
-
-      description:
-        'Mild steel plates for construction, manufacturing, machinery, fabrication and industrial applications.',
-
-      image:
-        'https://images.unsplash.com/photo-1565793298595-6a879b1d9492?auto=format&fit=crop&w=1200&q=85',
-
-      featured: true,
-      available: true
-    },
-
-
-    {
-      id: 8,
-      name: 'Roofing Sheets',
-      category: 'Roofing',
-
-      shortDescription:
-        'Dependable roofing materials for industrial projects.',
-
-      description:
-        'Roofing sheets suitable for warehouses, industrial structures, commercial buildings and development projects.',
-
-      image:
-        'https://images.unsplash.com/photo-1632759145351-1d592919f522?auto=format&fit=crop&w=1200&q=85',
-
-      featured: true,
-      available: true
-    }
-
-  ];
-
+    return {
+      ...product,
+      image: catalogImage ??
+        product.image.replace(/^\/?assets\/images\//, '/assets/images/')
+    };
+  }
 
   /*
   ============================================================
@@ -302,7 +284,7 @@ export class ProductService {
 
 
         this.products.set(
-          products
+          products.map(product => this.normalizeProductImage(product))
         );
 
         return;
@@ -358,7 +340,7 @@ export class ProductService {
 
 
       this.products.set(
-        parsedProducts
+        parsedProducts.map(product => this.normalizeProductImage(product))
       );
 
     } catch (error) {
@@ -430,6 +412,8 @@ export class ProductService {
   async addProduct(
     product: Omit<Product, 'id'>
   ): Promise<Product | null> {
+    const normalizedProduct =
+      this.normalizeProductImage({ ...product, id: 0 });
 
     /*
     ----------------------------------------------------------
@@ -445,20 +429,22 @@ export class ProductService {
           await firstValueFrom(
             this.http.post<Product>(
               `${this.api}/products`,
-              product
+              normalizedProduct
             )
           );
 
+        const normalizedCreatedProduct =
+          this.normalizeProductImage(createdProduct);
 
         this.products.update(
           products => [
-            createdProduct,
+            normalizedCreatedProduct,
             ...products
           ]
         );
 
 
-        return createdProduct;
+        return normalizedCreatedProduct;
 
       } catch (error) {
 
@@ -482,7 +468,7 @@ export class ProductService {
 
     const newProduct: Product = {
 
-      ...product,
+      ...normalizedProduct,
 
       id: Date.now()
 
@@ -514,6 +500,8 @@ export class ProductService {
   async updateProduct(
     updatedProduct: Product
   ): Promise<Product | null> {
+    const normalizedProduct =
+      this.normalizeProductImage(updatedProduct);
 
     /*
     ----------------------------------------------------------
@@ -529,23 +517,25 @@ export class ProductService {
           await firstValueFrom(
             this.http.put<Product>(
               `${this.api}/products/${updatedProduct.id}`,
-              updatedProduct
+              normalizedProduct
             )
           );
 
+        const normalizedUpdatedProduct =
+          this.normalizeProductImage(product);
 
         this.products.update(
           products =>
             products.map(
               current =>
-                current.id === product.id
-                  ? product
+                current.id === normalizedUpdatedProduct.id
+                  ? normalizedUpdatedProduct
                   : current
             )
         );
 
 
-        return product;
+        return normalizedUpdatedProduct;
 
       } catch (error) {
 
@@ -572,7 +562,7 @@ export class ProductService {
         products.map(
           product =>
             product.id === updatedProduct.id
-              ? { ...updatedProduct }
+              ? normalizedProduct
               : product
         )
     );
@@ -581,7 +571,7 @@ export class ProductService {
     this.saveLocalProducts();
 
 
-    return updatedProduct;
+    return normalizedProduct;
 
   }
 

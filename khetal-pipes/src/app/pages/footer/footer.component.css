@@ -239,3 +239,22 @@ body.dark-theme .login-btn{
     #ff8c42
   );
 }
+
+.footer-bottom {
+   background: linear-gradient(
+    135deg,
+#111111,
+#282828,
+#383838
+  );
+  color: #9ca3af;
+  text-align: center;
+  padding: 16px 20px;
+  border-top: 1px solid #273244;
+}
+
+.footer-bottom p {
+  font-size: 12px;
+  margin: 0;
+  line-height: 1.7;
+}

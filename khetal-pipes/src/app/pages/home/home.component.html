@@ -255,38 +255,44 @@
     </div>
 
 
-    <form>
+    
+<form (submit)="sendEnquiry($event)" #enquiryForm>
+    <input
+        type="text"
+        name="user_name"
+        placeholder="Your Name"
+        required
+    >
 
-        <input
-            type="text"
-            name="name"
-            placeholder="Your Name"
-            required
-        >
+    <input
+        type="tel"
+        name="user_phone"
+        placeholder="Phone Number"
+        pattern="[0-9+()\-\s]{7,20}"
+        title="Enter a valid phone number"
+        required
+    >
 
+    <textarea
+        name="user_requirement"
+        placeholder="Enter Your Requirement"
+        rows="5"
+        required
+    ></textarea>
 
-        <input
-            type="tel"
-            name="phone"
-            placeholder="Phone Number"
-            required
-        >
+    <button type="submit" [disabled]="isSending">
+        {{ isSending ? 'Sending...' : 'Send Enquiry' }}
+        <span>&rarr;</span>
+    </button>
 
+    <p *ngIf="successMessage" class="form-success">
+        {{ successMessage }}
+    </p>
 
-        <textarea
-            name="requirement"
-            placeholder="Enter Your Requirement"
-            rows="5"
-            required
-        ></textarea>
-
-
-        <button type="submit">
-            Send Enquiry
-            <span>&rarr;</span>
-        </button>
-
-    </form>
+    <p *ngIf="errorMessage" class="form-error">
+        {{ errorMessage }}
+    </p>
+</form>
 
 </section>
 

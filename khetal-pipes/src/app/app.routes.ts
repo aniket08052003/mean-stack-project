@@ -5,6 +5,7 @@ import { AboutComponent } from './pages/about/about.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { AdminComponent } from './pages/admin/admin.component';
+import { InfrastructureComponent } from './pages/infrastructure/infrastructure.component';
 
 export const routes: Routes = [
     {
@@ -12,6 +13,11 @@ export const routes: Routes = [
     component: HomeComponent
     
   },
+  {
+    path: 'infrastructure',
+    component: InfrastructureComponent
+  },
+  
 
   {
     path: 'products',
@@ -39,6 +45,7 @@ export const routes: Routes = [
 
   {
     path: '**',
-    redirectTo: ''
+    redirectTo: '/',
+    pathMatch: 'full'
   }
 ];

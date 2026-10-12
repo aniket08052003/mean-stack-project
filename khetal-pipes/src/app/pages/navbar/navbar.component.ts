@@ -8,16 +8,14 @@ import {
 import { isPlatformBrowser } from '@angular/common';
 
 import {
-  RouterLink,
-  RouterLinkActive
+  RouterLink
 } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
   imports: [
-    RouterLink,
-    RouterLinkActive
+    RouterLink
   ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
@@ -35,38 +33,38 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-    if (!this.isBrowser) {
-      return;
-    }
-
-    const savedTheme =
-      localStorage.getItem('khetal-theme');
-
-    this.isDark = savedTheme === 'dark';
-
-    document.body.classList.toggle(
-      'dark-theme',
-      this.isDark
-    );
+    this.applySavedTheme();
   }
 
   toggleTheme(): void {
-
-    if (!this.isBrowser) {
+    if (!this.isBrowser || typeof document === 'undefined') {
       return;
     }
 
     this.isDark = !this.isDark;
-
-    document.body.classList.toggle(
-      'dark-theme',
-      this.isDark
-    );
+    this.applyTheme(this.isDark);
 
     localStorage.setItem(
       'khetal-theme',
       this.isDark ? 'dark' : 'light'
     );
+  }
+
+  private applySavedTheme(): void {
+    if (!this.isBrowser || typeof document === 'undefined') {
+      return;
+    }
+
+    const savedTheme = localStorage.getItem('khetal-theme');
+    this.isDark = savedTheme === 'dark';
+    this.applyTheme(this.isDark);
+  }
+
+  private applyTheme(isDark: boolean): void {
+    if (typeof document === 'undefined' || !document.body) {
+      return;
+    }
+
+    document.body.classList.toggle('dark-theme', isDark);
   }
 }

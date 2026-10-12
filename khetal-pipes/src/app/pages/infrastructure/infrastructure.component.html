@@ -1,0 +1,224 @@
+
+<app-navbar></app-navbar>
+
+<!-- ==================== INFRASTRUCTURE HERO ==================== -->
+<section class="infrastructure-hero">
+    <div class="hero-overlay">
+        <span class="eyebrow">OUR FACILITIES</span>
+
+        <h1>Our Infrastructure</h1>
+
+        <p>
+            Strong infrastructure, organised storage and reliable
+            material handling for your steel and iron requirements.
+        </p>
+
+        <a href="#godown-details" class="hero-button">
+            Explore Our Facility <span>&rarr;</span>
+        </a>
+    </div>
+</section>
+
+<!-- ==================== GODOWN DETAILS ==================== -->
+<section class="godown-section" id="godown-details">
+
+    <div class="section-heading">
+        <span>OUR GODOWN</span>
+
+        <h2>Built for Storage. Ready for Supply.</h2>
+
+        <p>
+            Our godown facility supports the storage and handling
+            of steel and iron products for construction, industrial
+            and fabrication requirements.
+        </p>
+    </div>
+
+    <div class="godown-container">
+
+        <!-- ==================== GODOWN IMAGE SLIDER ==================== -->
+        <div class="godown-image godown-slider">
+
+            <!-- Image and overlay content -->
+            <div class="slider-image-container">
+
+                <!-- Current Image -->
+                <img
+                    class="slider-image"
+                    [src]="godownImages[currentImageIndex].src"
+                    [alt]="godownImages[currentImageIndex].alt"
+                >
+
+                <!-- Previous Button -->
+                <button
+                    type="button"
+                    class="slider-arrow slider-prev"
+                    (click)="previousImage()"
+                    aria-label="Previous godown image">
+                    &#10094;
+                </button>
+
+                <!-- Next Button -->
+                <button
+                    type="button"
+                    class="slider-arrow slider-next"
+                    (click)="nextImage()"
+                    aria-label="Next godown image">
+                    &#10095;
+                </button>
+
+                <!-- Image Counter -->
+                <div class="slider-counter">
+                    {{ currentImageIndex + 1 }} / {{ godownImages.length }}
+                </div>
+
+            </div>
+
+            <!-- Slider Navigation Dots -->
+            <div class="slider-dots">
+
+                @for (
+                    image of godownImages;
+                    track image.src;
+                    let i = $index
+                ) {
+                    <button
+                        type="button"
+                        class="slider-dot"
+                        [class.active]="i === currentImageIndex"
+                        (click)="goToImage(i)"
+                        [attr.aria-label]="'Show godown image ' + (i + 1)"
+                        [attr.aria-current]="i === currentImageIndex ? 'true' : null">
+                    </button>
+                }
+
+            </div>
+
+        </div>
+
+        <!-- ==================== GODOWN INFORMATION ==================== -->
+        <div class="godown-content">
+
+            <span class="content-label">OUR INFRASTRUCTURE</span>
+
+            <h2>A Reliable Base for Your Steel Requirements</h2>
+
+            <p>
+                At Khetal Pipes &amp; Tubes, our infrastructure
+                supports the organised storage, handling and
+                dispatch of a wide range of steel and iron products.
+                We focus on keeping materials accessible and
+                coordinating supplies according to customer needs.
+            </p>
+
+            <p>
+                From MS pipes, angles and channels to beams, plates
+                and TMT bars, our facility supports efficient
+                inventory handling for various project requirements.
+            </p>
+
+            <!-- Facility Features -->
+            <div class="facility-features">
+
+                <div class="feature-item">
+                    <span class="feature-icon">✓</span>
+
+                    <div>
+                        <h3>Organised Storage</h3>
+
+                        <p>
+                            Structured storage for different steel
+                            products and material categories.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <span class="feature-icon">✓</span>
+
+                    <div>
+                        <h3>Material Handling</h3>
+
+                        <p>
+                            Careful handling and arrangement to
+                            support smoother order processing.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <span class="feature-icon">✓</span>
+
+                    <div>
+                        <h3>Dispatch Support</h3>
+
+                        <p>
+                            Coordinated preparation and dispatch
+                            of materials based on order requirements.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+            <a routerLink="/products" class="products-button">
+                Explore Our Products <span>&rarr;</span>
+            </a>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- ==================== INFRASTRUCTURE HIGHLIGHTS ==================== -->
+<section class="infrastructure-highlights">
+
+    <div class="highlight-item">
+        <span class="highlight-icon">▦</span>
+
+        <h3>Storage</h3>
+
+        <p>
+            Organised space for steel and iron materials.
+        </p>
+    </div>
+
+    <div class="highlight-item">
+        <span class="highlight-icon">⚙</span>
+
+        <h3>Handling</h3>
+
+        <p>
+            Material handling focused on efficient operations.
+        </p>
+    </div>
+
+    <div class="highlight-item">
+        <span class="highlight-icon">➜</span>
+
+        <h3>Supply</h3>
+
+        <p>
+            Supporting customer and project supply needs.
+        </p>
+    </div>
+
+</section>
+
+<!-- ==================== CALL TO ACTION ==================== -->
+<section class="infrastructure-cta">
+
+    <h2>Looking for Reliable Steel Supplies?</h2>
+
+    <p>
+        Contact our team to discuss your material requirements
+        and product availability.
+    </p>
+
+    <a routerLink="/products" class="cta-button">
+        View Products <span>&rarr;</span>
+    </a>
+
+</section>
+
+<app-footer></app-footer>
