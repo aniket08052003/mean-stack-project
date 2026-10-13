@@ -50,7 +50,7 @@
   min-height:750px;
 
   background:
-  url('https://images.unsplash.com/photo-1565793298595-6a879b1d9492?auto=format&fit=crop&w=1800&q=90');
+  url('/assets/images/products-background.jpg');
 
   background-size:cover;
   background-position:center;

@@ -5,17 +5,25 @@
 } 
 
 /* ================= HERO ================= */ 
-.products-hero { 
-    min-height: 70vh; 
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    text-align: center; 
-    color: #fff; 
-    background: linear-gradient(rgba(0, 0, 0, .65), rgba(0, 0, 0, .65)), url('https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=1800'); 
-    background-size: cover; 
-    background-position: center; 
-} 
+.products-hero {
+  min-height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+
+  background:
+    linear-gradient(
+      rgba(0, 0, 0, 0.65),
+      rgba(0, 0, 0, 0.65)
+    ),
+    url('/assets/images/products-background.jpg')
+    no-repeat center center;
+
+  background-size: cover;
+  background-position: center;
+}
 
 .hero-content h1 { 
     font-size: 4rem; 

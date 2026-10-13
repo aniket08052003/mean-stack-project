@@ -57,7 +57,7 @@
   overflow: hidden;
   background:
     linear-gradient(90deg, rgba(12, 18, 28, 0.88), rgba(12, 18, 28, 0.4)),
-    url("https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=1800&q=85")
+    url('/assets/images/infrastructure-background.jpg')
     center / cover no-repeat;
 }
 
