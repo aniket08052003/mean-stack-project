@@ -1,32 +1,17 @@
-import {
-  Inject,
-  Injectable,
-  PLATFORM_ID,
-  signal
-} from '@angular/core';
+import { Inject, Injectable, PLATFORM_ID, signal } from '@angular/core';
 
-import {
-  isPlatformBrowser
-} from '@angular/common';
+import { isPlatformBrowser } from '@angular/common';
 
-import {
-  HttpClient
-} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
-import {
-  firstValueFrom
-} from 'rxjs';
+import { firstValueFrom } from 'rxjs';
 
-import {
-  Product
-} from '../models/product';
-
+import { Product } from '../models/product';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ProductService {
-
   /*
   ============================================================
   API CONFIGURATION
@@ -52,124 +37,133 @@ export class ProductService {
 
   private readonly isBrowser: boolean;
 
-
   /*
   ============================================================
   DEFAULT PRODUCTS
   ============================================================
   */
 
- /*
+  /*
 ============================================================
 DEFAULT PRODUCTS
 ============================================================
 */
 
-private readonly defaultProducts: Product[] = [
-  {
-    id: 1,
-    name: 'MS Pipes',
-    category: 'Pipes',
-    shortDescription:
-      'Reliable mild steel pipes for structural and industrial projects.',
-    description:
-      'Premium mild steel pipes suitable for fabrication, construction, industrial frameworks and general engineering applications.',
-    image: 'assets/images/MS_Pipes.jpeg',
-    featured: true,
-    available: true
-  },
+  private readonly defaultProducts: Product[] = [
+    {
+      id: 1,
+      name: 'MS Pipes',
+      category: 'Pipes',
+      shortDescription:
+        'Reliable mild steel pipes for structural and industrial projects.',
+      description:
+        'Premium mild steel pipes suitable for fabrication, construction, industrial frameworks and general engineering applications.',
+      image: 'assets/images/MS_Pipes.jpeg',
+      featured: true,
+      available: true,
+    },
 
-  {
-    id: 2,
-    name: 'Galvanised GI Pipes',
-    category: 'Pipes',
-    shortDescription:
-      'Corrosion-resistant pipes for long-lasting performance.',
-    description:
-      'Galvanised iron pipes suited to projects requiring strength, durability and improved resistance against corrosion.',
-    image: 'assets/images/GI_Pipes.jpeg',
-    featured: true,
-    available: true
-  },
+    {
+      id: 2,
+      name: 'Galvanised GI Pipes',
+      category: 'Pipes',
+      shortDescription:
+        'Corrosion-resistant pipes for long-lasting performance.',
+      description:
+        'Galvanised iron pipes suited to projects requiring strength, durability and improved resistance against corrosion.',
+      image: 'assets/images/GI_Pipes.jpeg',
+      featured: true,
+      available: true,
+    },
 
-  {
-    id: 3,
-    name: 'Seamless Pipes',
-    category: 'Pipes',
-    shortDescription:
-      'Seamless piping solutions for demanding applications.',
-    description:
-      'Durable seamless pipes designed for industrial and engineering requirements where dependable material performance is important.',
-    image: 'assets/images/Seamless_Pipes.jpeg',
-    featured: false,
-    available: true
-  },
+    {
+      id: 3,
+      name: 'Seamless Pipes',
+      category: 'Pipes',
+      shortDescription: 'Seamless piping solutions for demanding applications.',
+      description:
+        'Durable seamless pipes designed for industrial and engineering requirements where dependable material performance is important.',
+      image: 'assets/images/Seamless_Pipes.jpeg',
+      featured: false,
+      available: true,
+    },
 
-  {
-    id: 4,
-    name: 'MS Angles',
-    category: 'Structural Steel',
-    shortDescription:
-      'Steel angles for fabrication and structural frameworks.',
-    description:
-      'Mild steel angles used for framing, supports, fabrication, construction and other structural applications.',
-    image: '/assets/images/Angles.jpeg',
-    featured: true,
-    available: true
-  },
+    {
+      id: 4,
+      name: 'MS Angles',
+      category: 'Structural Steel',
+      shortDescription:
+        'Steel angles for fabrication and structural frameworks.',
+      description:
+        'Mild steel angles used for framing, supports, fabrication, construction and other structural applications.',
+      image: '/assets/images/Angles.jpeg',
+      featured: true,
+      available: true,
+    },
 
-  {
-    id: 5,
-    name: 'MS Bars',
-    category: 'Structural Steel',
-    shortDescription:
-      'Strong steel bars for construction and engineering work.',
-    description:
-      'Mild steel bars available for fabrication, reinforcement, manufacturing and general engineering requirements.',
-    image: 'assets/images/MS_Bars.jpeg',
-    featured: false,
-    available: true
-  },
+    {
+      id: 5,
+      name: 'MS Bars',
+      category: 'Structural Steel',
+      shortDescription:
+        'Strong steel bars for construction and engineering work.',
+      description:
+        'Mild steel bars available for fabrication, reinforcement, manufacturing and general engineering requirements.',
+      image: 'assets/images/MS_Bars.jpeg',
+      featured: false,
+      available: true,
+    },
 
-  {
-    id: 6,
-    name: 'MS Flats',
-    category: 'Structural Steel',
-    shortDescription:
-      'Versatile flat steel products for varied requirements.',
-    description:
-      'Mild steel flats suitable for industrial fabrication, frames, brackets and general construction work.',
-    image: 'assets/images/MS_Flats.jpeg',
-    featured: false,
-    available: true
-  },
+    {
+      id: 6,
+      name: 'MS Flats',
+      category: 'Structural Steel',
+      shortDescription:
+        'Versatile flat steel products for varied requirements.',
+      description:
+        'Mild steel flats suitable for industrial fabrication, frames, brackets and general construction work.',
+      image: 'assets/images/MS_Flats.jpeg',
+      featured: false,
+      available: true,
+    },
 
-  {
-    id: 7,
-    name: 'MS Plates',
-    category: 'Plates',
-    shortDescription:
-      'Heavy-duty steel plates for fabrication and engineering.',
-    description:
-      'Mild steel plates for construction, manufacturing, machinery, fabrication and industrial applications.',
-    image: '/assets/images/plates.jpeg',
-    featured: true,
-    available: true
-  },
+    {
+      id: 7,
+      name: 'MS Plates',
+      category: 'Plates',
+      shortDescription:
+        'Heavy-duty steel plates for fabrication and engineering.',
+      description:
+        'Mild steel plates for construction, manufacturing, machinery, fabrication and industrial applications.',
+      image: '/assets/images/plates.jpeg',
+      featured: true,
+      available: true,
+    },
 
-  {
-    id: 8,
-    name: 'Roofing Sheets',
-    category: 'Roofing',
-    shortDescription:
-      'Dependable roofing materials for industrial projects.',
-    description:
-      'Roofing sheets suitable for warehouses, industrial structures, commercial buildings and development projects.',
-    image: 'assets/images/Roofing_Sheets.jpeg',
-    featured: true,
-    available: true
-  }
-];
+    {
+      id: 8,
+      name: 'Roofing Sheets',
+      category: 'Roofing',
+      shortDescription: 'Dependable roofing materials for industrial projects.',
+      description:
+        'Roofing sheets suitable for warehouses, industrial structures, commercial buildings and development projects.',
+      image: 'assets/images/Roofing_Sheets.jpeg',
+      featured: true,
+      available: true,
+    },
+    {
+      id: 9,
+      name: 'MS Beams',
+      category: 'Structural Steel',
+      shortDescription:
+        'Strong mild steel beams for structural and construction projects.',
+      description:
+        'Mild steel beams suitable for structural frameworks, building construction, industrial sheds, fabrication and other engineering applications.',
+      image: 'assets/images/beams.jpeg',
+      featured: true,
+      available: true,
+    },
+  ];
 
   private normalizeProductImage(product: Product): Product {
     const productName = product.name
@@ -185,15 +179,16 @@ private readonly defaultProducts: Product[] = [
       channel: '/assets/images/channels.jpeg',
       channels: '/assets/images/channels.jpeg',
       plate: '/assets/images/plates.jpeg',
-      plates: '/assets/images/plates.jpeg'
+      plates: '/assets/images/plates.jpeg',
     };
 
     const catalogImage = catalogImages[productName];
 
     return {
       ...product,
-      image: catalogImage ??
-        product.image.replace(/^\/?assets\/images\//, '/assets/images/')
+      image:
+        catalogImage ??
+        product.image.replace(/^\/?assets\/images\//, '/assets/images/'),
     };
   }
 
@@ -205,7 +200,6 @@ private readonly defaultProducts: Product[] = [
 
   readonly products = signal<Product[]>([]);
 
-
   /*
   ============================================================
   CONSTRUCTOR
@@ -216,16 +210,12 @@ private readonly defaultProducts: Product[] = [
     private readonly http: HttpClient,
 
     @Inject(PLATFORM_ID)
-    platformId: object
+    platformId: object,
   ) {
-
-    this.isBrowser =
-      isPlatformBrowser(platformId);
+    this.isBrowser = isPlatformBrowser(platformId);
 
     this.loadProducts();
-
   }
-
 
   /*
   ============================================================
@@ -234,11 +224,8 @@ private readonly defaultProducts: Product[] = [
   */
 
   private get apiEnabled(): boolean {
-
     return this.api.trim().length > 0;
-
   }
-
 
   /*
   ============================================================
@@ -247,7 +234,6 @@ private readonly defaultProducts: Product[] = [
   */
 
   private async loadProducts(): Promise<void> {
-
     /*
     ----------------------------------------------------------
     SSR
@@ -255,15 +241,10 @@ private readonly defaultProducts: Product[] = [
     */
 
     if (!this.isBrowser) {
-
-      this.products.set([
-        ...this.defaultProducts
-      ]);
+      this.products.set([...this.defaultProducts]);
 
       return;
-
     }
-
 
     /*
     ----------------------------------------------------------
@@ -272,39 +253,25 @@ private readonly defaultProducts: Product[] = [
     */
 
     if (this.apiEnabled) {
-
       try {
-
-        const products =
-          await firstValueFrom(
-            this.http.get<Product[]>(
-              `${this.api}/products`
-            )
-          );
-
+        const products = await firstValueFrom(
+          this.http.get<Product[]>(`${this.api}/products`),
+        );
 
         this.products.set(
-          products.map(product => this.normalizeProductImage(product))
+          products.map((product) => this.normalizeProductImage(product)),
         );
 
         return;
-
       } catch (error) {
-
-        console.error(
-          'Unable to load products from API:',
-          error
-        );
+        console.error('Unable to load products from API:', error);
 
         /*
         Fallback to localStorage during development
         if backend is unavailable.
         */
-
       }
-
     }
-
 
     /*
     ----------------------------------------------------------
@@ -312,55 +279,48 @@ private readonly defaultProducts: Product[] = [
     ----------------------------------------------------------
     */
 
-    const storedProducts =
-      localStorage.getItem(
-        this.storageKey
-      );
-
+    const storedProducts = localStorage.getItem(this.storageKey);
 
     if (!storedProducts) {
-
-      this.products.set([
-        ...this.defaultProducts
-      ]);
+      this.products.set([...this.defaultProducts]);
 
       this.saveLocalProducts();
 
       return;
-
     }
-
 
     try {
+      const parsedProducts = JSON.parse(storedProducts) as Product[];
 
-      const parsedProducts =
-        JSON.parse(
-          storedProducts
-        ) as Product[];
-
-
-      this.products.set(
-        parsedProducts.map(product => this.normalizeProductImage(product))
+      const normalizedProducts = parsedProducts.map((product) =>
+        this.normalizeProductImage(product),
       );
 
+      // Add MS Beams if it is missing from saved products
+      const beamsExists = normalizedProducts.some(
+        (product) => product.name.trim().toLowerCase() === 'ms beams',
+      );
+
+      if (!beamsExists) {
+        const beamsProduct = this.defaultProducts.find(
+          (product) => product.name === 'MS Beams',
+        );
+
+        if (beamsProduct) {
+          normalizedProducts.push(beamsProduct);
+        }
+      }
+
+      this.products.set(normalizedProducts);
+      this.saveLocalProducts();
     } catch (error) {
+      console.error('Unable to load products from localStorage:', error);
 
-      console.error(
-        'Unable to load products from localStorage:',
-        error
-      );
-
-
-      this.products.set([
-        ...this.defaultProducts
-      ]);
+      this.products.set([...this.defaultProducts]);
 
       this.saveLocalProducts();
-
     }
-
   }
-
 
   /*
   ============================================================
@@ -369,21 +329,12 @@ private readonly defaultProducts: Product[] = [
   */
 
   private saveLocalProducts(): void {
-
     if (!this.isBrowser) {
       return;
     }
 
-
-    localStorage.setItem(
-      this.storageKey,
-      JSON.stringify(
-        this.products()
-      )
-    );
-
+    localStorage.setItem(this.storageKey, JSON.stringify(this.products()));
   }
-
 
   /*
   ============================================================
@@ -391,17 +342,9 @@ private readonly defaultProducts: Product[] = [
   ============================================================
   */
 
-  getProductById(
-    id: number
-  ): Product | undefined {
-
-    return this.products().find(
-      product =>
-        product.id === id
-    );
-
+  getProductById(id: number): Product | undefined {
+    return this.products().find((product) => product.id === id);
   }
-
 
   /*
   ============================================================
@@ -409,11 +352,8 @@ private readonly defaultProducts: Product[] = [
   ============================================================
   */
 
-  async addProduct(
-    product: Omit<Product, 'id'>
-  ): Promise<Product | null> {
-    const normalizedProduct =
-      this.normalizeProductImage({ ...product, id: 0 });
+  async addProduct(product: Omit<Product, 'id'>): Promise<Product | null> {
+    const normalizedProduct = this.normalizeProductImage({ ...product, id: 0 });
 
     /*
     ----------------------------------------------------------
@@ -422,43 +362,26 @@ private readonly defaultProducts: Product[] = [
     */
 
     if (this.apiEnabled) {
-
       try {
-
-        const createdProduct =
-          await firstValueFrom(
-            this.http.post<Product>(
-              `${this.api}/products`,
-              normalizedProduct
-            )
-          );
+        const createdProduct = await firstValueFrom(
+          this.http.post<Product>(`${this.api}/products`, normalizedProduct),
+        );
 
         const normalizedCreatedProduct =
           this.normalizeProductImage(createdProduct);
 
-        this.products.update(
-          products => [
-            normalizedCreatedProduct,
-            ...products
-          ]
-        );
-
+        this.products.update((products) => [
+          normalizedCreatedProduct,
+          ...products,
+        ]);
 
         return normalizedCreatedProduct;
-
       } catch (error) {
-
-        console.error(
-          'Unable to add product through API:',
-          error
-        );
+        console.error('Unable to add product through API:', error);
 
         return null;
-
       }
-
     }
-
 
     /*
     ----------------------------------------------------------
@@ -467,29 +390,17 @@ private readonly defaultProducts: Product[] = [
     */
 
     const newProduct: Product = {
-
       ...normalizedProduct,
 
-      id: Date.now()
-
+      id: Date.now(),
     };
 
-
-    this.products.update(
-      products => [
-        newProduct,
-        ...products
-      ]
-    );
-
+    this.products.update((products) => [newProduct, ...products]);
 
     this.saveLocalProducts();
 
-
     return newProduct;
-
   }
-
 
   /*
   ============================================================
@@ -497,11 +408,8 @@ private readonly defaultProducts: Product[] = [
   ============================================================
   */
 
-  async updateProduct(
-    updatedProduct: Product
-  ): Promise<Product | null> {
-    const normalizedProduct =
-      this.normalizeProductImage(updatedProduct);
+  async updateProduct(updatedProduct: Product): Promise<Product | null> {
+    const normalizedProduct = this.normalizeProductImage(updatedProduct);
 
     /*
     ----------------------------------------------------------
@@ -510,46 +418,31 @@ private readonly defaultProducts: Product[] = [
     */
 
     if (this.apiEnabled) {
-
       try {
-
-        const product =
-          await firstValueFrom(
-            this.http.put<Product>(
-              `${this.api}/products/${updatedProduct.id}`,
-              normalizedProduct
-            )
-          );
-
-        const normalizedUpdatedProduct =
-          this.normalizeProductImage(product);
-
-        this.products.update(
-          products =>
-            products.map(
-              current =>
-                current.id === normalizedUpdatedProduct.id
-                  ? normalizedUpdatedProduct
-                  : current
-            )
+        const product = await firstValueFrom(
+          this.http.put<Product>(
+            `${this.api}/products/${updatedProduct.id}`,
+            normalizedProduct,
+          ),
         );
 
+        const normalizedUpdatedProduct = this.normalizeProductImage(product);
+
+        this.products.update((products) =>
+          products.map((current) =>
+            current.id === normalizedUpdatedProduct.id
+              ? normalizedUpdatedProduct
+              : current,
+          ),
+        );
 
         return normalizedUpdatedProduct;
-
       } catch (error) {
-
-        console.error(
-          'Unable to update product through API:',
-          error
-        );
+        console.error('Unable to update product through API:', error);
 
         return null;
-
       }
-
     }
-
 
     /*
     ----------------------------------------------------------
@@ -557,24 +450,16 @@ private readonly defaultProducts: Product[] = [
     ----------------------------------------------------------
     */
 
-    this.products.update(
-      products =>
-        products.map(
-          product =>
-            product.id === updatedProduct.id
-              ? normalizedProduct
-              : product
-        )
+    this.products.update((products) =>
+      products.map((product) =>
+        product.id === updatedProduct.id ? normalizedProduct : product,
+      ),
     );
-
 
     this.saveLocalProducts();
 
-
     return normalizedProduct;
-
   }
-
 
   /*
   ============================================================
@@ -582,10 +467,7 @@ private readonly defaultProducts: Product[] = [
   ============================================================
   */
 
-  async deleteProduct(
-    id: number
-  ): Promise<boolean> {
-
+  async deleteProduct(id: number): Promise<boolean> {
     /*
     ----------------------------------------------------------
     API
@@ -593,40 +475,20 @@ private readonly defaultProducts: Product[] = [
     */
 
     if (this.apiEnabled) {
-
       try {
+        await firstValueFrom(this.http.delete(`${this.api}/products/${id}`));
 
-        await firstValueFrom(
-          this.http.delete(
-            `${this.api}/products/${id}`
-          )
+        this.products.update((products) =>
+          products.filter((product) => product.id !== id),
         );
-
-
-        this.products.update(
-          products =>
-            products.filter(
-              product =>
-                product.id !== id
-            )
-        );
-
 
         return true;
-
       } catch (error) {
-
-        console.error(
-          'Unable to delete product through API:',
-          error
-        );
+        console.error('Unable to delete product through API:', error);
 
         return false;
-
       }
-
     }
-
 
     /*
     ----------------------------------------------------------
@@ -634,22 +496,14 @@ private readonly defaultProducts: Product[] = [
     ----------------------------------------------------------
     */
 
-    this.products.update(
-      products =>
-        products.filter(
-          product =>
-            product.id !== id
-        )
+    this.products.update((products) =>
+      products.filter((product) => product.id !== id),
     );
-
 
     this.saveLocalProducts();
 
-
     return true;
-
   }
-
 
   /*
   ============================================================
@@ -658,7 +512,6 @@ private readonly defaultProducts: Product[] = [
   */
 
   async resetProducts(): Promise<boolean> {
-
     /*
     ----------------------------------------------------------
     API
@@ -666,38 +519,20 @@ private readonly defaultProducts: Product[] = [
     */
 
     if (this.apiEnabled) {
-
       try {
-
-        const products =
-          await firstValueFrom(
-            this.http.post<Product[]>(
-              `${this.api}/products/reset`,
-              {}
-            )
-          );
-
-
-        this.products.set(
-          products
+        const products = await firstValueFrom(
+          this.http.post<Product[]>(`${this.api}/products/reset`, {}),
         );
 
+        this.products.set(products);
 
         return true;
-
       } catch (error) {
-
-        console.error(
-          'Unable to reset products through API:',
-          error
-        );
+        console.error('Unable to reset products through API:', error);
 
         return false;
-
       }
-
     }
-
 
     /*
     ----------------------------------------------------------
@@ -705,16 +540,10 @@ private readonly defaultProducts: Product[] = [
     ----------------------------------------------------------
     */
 
-    this.products.set([
-      ...this.defaultProducts
-    ]);
-
+    this.products.set([...this.defaultProducts]);
 
     this.saveLocalProducts();
 
-
     return true;
-
   }
-
 }
