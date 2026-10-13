@@ -70,6 +70,12 @@ export class InfrastructureComponent {
       alt: 'Khetal Pipes and Tubes storage facility',
       title: 'Our Infrastructure',
       description: 'Supporting reliable steel and iron product supplies.'
+    },
+    {
+      src: 'assets/images/infrastructure-9.jpeg',
+      alt: 'Khetal Pipes and Tubes storage facility',
+      title: 'Our Infrastructure',
+      description: 'Supporting reliable steel and iron product supplies.'
     }
   ];
 
